@@ -54,8 +54,9 @@ const Portfolio = () => {
               <div className="aspect-video overflow-hidden">
                 <img 
                   src={project.image} 
-                  alt={project.title}
+                  alt={`${project.title} - ${project.description}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-smooth"
+                  loading="lazy"
                 />
               </div>
               

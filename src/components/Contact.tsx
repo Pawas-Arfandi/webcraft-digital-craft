@@ -15,11 +15,30 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
     // Form validation
-    if (!formData.name || !formData.email || !formData.message) {
-      toast.error("Please fill in all fields");
+    if (!formData.name.trim()) {
+      toast.error("Please enter your name");
       return;
     }
+    
+    if (!formData.email.trim()) {
+      toast.error("Please enter your email");
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    
+    if (!formData.message.trim()) {
+      toast.error("Please enter your message");
+      return;
+    }
+    
     toast.success("Message sent! We'll get back to you soon.");
     setFormData({ name: "", email: "", message: "" });
   };
@@ -68,28 +87,43 @@ const Contact = () => {
               <CardTitle>Send Us a Message</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                 <div>
+                  <label htmlFor="name" className="sr-only">Your Name</label>
                   <Input 
+                    id="name"
+                    name="name"
                     placeholder="Your Name" 
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                    aria-required="true"
                   />
                 </div>
                 <div>
+                  <label htmlFor="email" className="sr-only">Your Email</label>
                   <Input 
+                    id="email"
+                    name="email"
                     type="email" 
                     placeholder="Your Email" 
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    aria-required="true"
                   />
                 </div>
                 <div>
+                  <label htmlFor="message" className="sr-only">Your Message</label>
                   <Textarea 
+                    id="message"
+                    name="message"
                     placeholder="Your Message" 
                     rows={6}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    required
+                    aria-required="true"
                   />
                 </div>
                 <Button type="submit" size="lg" className="w-full group">

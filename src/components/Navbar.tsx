@@ -40,7 +40,7 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
             {navLinks.map((link, index) => (
               <a
                 key={index}
@@ -50,10 +50,10 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="default" size="default">
-              Get Started
+            <Button variant="default" size="default" asChild>
+              <a href="#contact">Get Started</a>
             </Button>
-          </div>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
@@ -71,7 +71,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
+          <nav className="md:hidden py-4 border-t border-border animate-fade-in" aria-label="Mobile navigation">
             <div className="flex flex-col gap-4">
               {navLinks.map((link, index) => (
                 <a
@@ -83,11 +83,11 @@ const Navbar = () => {
                   {link.label}
                 </a>
               ))}
-              <Button variant="default" size="default" className="w-full">
-                Get Started
+              <Button variant="default" size="default" className="w-full" asChild>
+                <a href="#contact">Get Started</a>
               </Button>
             </div>
-          </div>
+          </nav>
         )}
       </div>
     </nav>

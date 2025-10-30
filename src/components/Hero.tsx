@@ -9,8 +9,9 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <img 
           src={heroBg} 
-          alt="Abstract digital background" 
+          alt="Abstract digital technology background with geometric shapes" 
           className="w-full h-full object-cover opacity-20"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5"></div>
       </div>
@@ -38,12 +39,14 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="hero" size="lg" className="group">
-              Get Started
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Button variant="hero" size="lg" className="group" asChild>
+              <a href="#contact">
+                Get Started
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
-            <Button variant="hero-outline" size="lg">
-              View Services
+            <Button variant="hero-outline" size="lg" asChild>
+              <a href="#services">View Services</a>
             </Button>
           </div>
 
